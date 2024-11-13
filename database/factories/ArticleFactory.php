@@ -19,8 +19,8 @@ class ArticleFactory extends Factory
         return [
             'title' => fake()->sentence,
             'content' => fake()->realText(500),
-            'author_name' => fake()->name,
-            'published_at' => fake()->optional()->dateTime,
+            'author_id' => fake()->numberBetween(1, 10),
+            'published_at' => fake()->optional()->dateTimeThisYear(),
         ];
     }
 }

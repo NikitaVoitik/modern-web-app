@@ -9,4 +9,9 @@ class Article extends Model
 {
     /** @use HasFactory<\Database\Factories\ArticleFactory> */
     use HasFactory;
+
+    function author()
+    {
+        return $this->belongsTo(Author::class, 'author_id');
+    }
 }
