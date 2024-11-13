@@ -4,11 +4,11 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Laravel</title>
+    <title>{{$title}}</title>
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
-    <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
+    <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet"/>
 
     <!-- Styles / Scripts -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -25,11 +25,11 @@ This example requires updating your template:
 -->
 <div class="min-h-full">
 
-    <x-site-layout-menu />
+    <x-site-layout-menu/>
 
     <header class="bg-white shadow">
         <div class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
-            <h1 class="text-3xl font-bold tracking-tight text-gray-900">Dashboard</h1>
+            <h1 class="text-3xl font-bold tracking-tight text-gray-900">{{$title}}</h1>
         </div>
     </header>
 
@@ -39,9 +39,8 @@ This example requires updating your template:
         </div>
     </main>
 
-    <x-site-layout-footer />
+    <x-site-layout-footer/>
 </div>
-
 
 
 </body>
