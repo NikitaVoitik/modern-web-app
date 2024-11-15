@@ -2,11 +2,13 @@
 
 namespace Database\Factories;
 
+use App\Models\Article;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Article>
+ * @extends Factory<Article>
  */
+
 class ArticleFactory extends Factory
 {
     /**
@@ -18,9 +20,9 @@ class ArticleFactory extends Factory
     {
         return [
             'title' => fake()->sentence,
-            'content' => fake()->realText(500),
+            'content' => fake()->realText(2000),
             'author_id' => fake()->numberBetween(1, 10),
-            'published_at' => fake()->optional()->dateTimeThisYear(),
+            'published_at' => fake()->optional()->dateTimeThisMonth(),
         ];
     }
 }

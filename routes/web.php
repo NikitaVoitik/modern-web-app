@@ -1,9 +1,10 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\WelcomController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', \App\Http\Controllers\WelcomController::class);
+Route::get('/', WelcomController::class);
 
 Route::get('/dashboard', function () {
     return view('dashboard');
