@@ -3,7 +3,10 @@
 namespace Database\Seeders;
 
 use App\Models\User;
-// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Election;
+use App\Models\Candidate;
+use App\Models\ElectionCandidate;
+use App\Models\Vote;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -13,11 +16,17 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // User::factory(10)->create();
+        // Create 10 users
+        User::factory(20)->create();
 
-        User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
-        ]);
+
+        $elections = Election::factory(3)->create();
+
+
+        $candidates = Candidate::factory(8)->create();
+
+        $election_candidates = ElectionCandidate::factory(10)->uniqueCombination()->create();
+
+        $votes = Vote::factory(20)->create();
     }
 }
