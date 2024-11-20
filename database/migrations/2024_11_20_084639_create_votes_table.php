@@ -16,6 +16,11 @@ return new class extends Migration
             $table->integer('user_id');
             $table->integer('election_candidate_id');
             $table->timestamp('created_at')->useCurrent();
+
+            $table->unique(['user_id', 'election_candidate_id']);
+
+            $table->index('user_id');
+            $table->index('election_candidate_id');
         });
     }
 

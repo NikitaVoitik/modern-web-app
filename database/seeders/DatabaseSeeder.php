@@ -20,13 +20,13 @@ class DatabaseSeeder extends Seeder
         User::factory(20)->create();
 
 
-        $elections = Election::factory(3)->create();
+        Election::factory(3)->create();
 
 
-        $candidates = Candidate::factory(8)->create();
+        Candidate::factory(8)->create();
 
-        $election_candidates = ElectionCandidate::factory(10)->uniqueCombination()->create();
+        ElectionCandidate::factory(10)->uniqueCombination()->create();
 
-        $votes = Vote::factory(20)->create();
+        Vote::factory(40)->uniqueCombination()->create();
     }
 }
