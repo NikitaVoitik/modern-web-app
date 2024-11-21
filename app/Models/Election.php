@@ -9,4 +9,9 @@ class Election extends Model
 {
     /** @use HasFactory<\Database\Factories\ElectionFactory> */
     use HasFactory;
+
+    public function candidates()
+    {
+        return $this->belongsToMany(Candidate::class, 'election_candidates', 'election_id', 'candidate_id');
+    }
 }
