@@ -9,6 +9,7 @@ use App\Models\ElectionCandidate;
 use App\Models\Vote;
 use Illuminate\Database\Seeder;
 
+
 class DatabaseSeeder extends Seeder
 {
     /**
@@ -28,5 +29,6 @@ class DatabaseSeeder extends Seeder
         ElectionCandidate::factory(10)->uniqueCombination()->create();
 
         Vote::factory(40)->uniqueCombination()->create();
+
     }
 }
