@@ -2,11 +2,12 @@
 
 namespace App\Models;
 
+use Database\Factories\ElectionCandidateFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class ElectionCandidate extends Model
 {
-    /** @use HasFactory<\Database\Factories\ElectionCandidateFactory> */
+    /** @use HasFactory<ElectionCandidateFactory> */
     use HasFactory;
 }

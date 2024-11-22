@@ -2,10 +2,11 @@
 
 namespace Database\Factories;
 
+use App\Models\ElectionCandidate;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\ElectionCandidate>
+ * @extends Factory<ElectionCandidate>
  */
 class ElectionCandidateFactory extends Factory
 {
