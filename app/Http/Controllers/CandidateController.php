@@ -22,6 +22,8 @@ class CandidateController extends Controller
 
     public function show(int $id)
     {
+        $candidate = Candidate::with('elections')->findOrFail($id);
 
+        return view('candidates.show', compact('candidate'));
     }
 }

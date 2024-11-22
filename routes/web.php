@@ -16,7 +16,8 @@ Route::get('/dashboard', function () {
 Route::get('/elections', [ElectionController::class, 'index'])->name('elections.index');
 Route::get('/elections/{id}', [ElectionController::class, 'show'])->name('elections.show');
 
-Route::get('/candidates', [CandidateController::class, 'index'])->name('elections.index');
+Route::get('/candidates', [CandidateController::class, 'index'])->name('candidates.index');
+Route::get('/candidates/{id}', [CandidateController::class, 'show'])->name('candidates.show');
 
 
 Route::middleware('auth')->group(function () {
