@@ -25,7 +25,7 @@
             <!-- Candidates Section -->
             <div class="mt-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 p-2 overflow-visible">
                 @foreach($election->candidates as $candidate)
-                    <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300">
+                    <a href="{{ route('candidates.show', $candidate->id) }}" class="bg-white dark:bg-gray-800 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300">
                         <div class="p-6">
                             <h4 class="text-xl font-semibold text-gray-800 dark:text-gray-200">
                                 {{ $candidate->name }}
@@ -34,7 +34,7 @@
                                 <span class="font-medium">Party:</span> {{ $candidate->party }}
                             </p>
                         </div>
-                    </div>
+                    </a>
                 @endforeach
             </div>
         </div>
