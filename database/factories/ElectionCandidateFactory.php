@@ -18,8 +18,8 @@ class ElectionCandidateFactory extends Factory
     public function definition(): array
     {
         return [
-            'election_id' => $this->faker->numberBetween(1, 3),
-            'candidate_id' => $this->faker->numberBetween(2, 6),
+            'election_id' => $this->faker->numberBetween(1, 5),
+            'candidate_id' => $this->faker->numberBetween(1, 6),
         ];
     }
 
@@ -27,8 +27,8 @@ class ElectionCandidateFactory extends Factory
     {
         return $this->state(function (array $attributes) {
             do {
-                $election_id = $this->faker->numberBetween(1, 3);
-                $candidate_id = $this->faker->numberBetween(2, 6);
+                $election_id = $this->faker->numberBetween(1, 5);
+                $candidate_id = $this->faker->numberBetween(1, 6);
                 $combination = $election_id . '-' . $candidate_id;
             } while (in_array($combination, self::$usedCombinations));
 

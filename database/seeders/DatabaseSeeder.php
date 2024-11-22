@@ -21,12 +21,12 @@ class DatabaseSeeder extends Seeder
         User::factory(20)->create();
 
 
-        Election::factory(3)->create();
+        Election::factory(6)->create();
 
 
         Candidate::factory(8)->create();
 
-        ElectionCandidate::factory(10)->uniqueCombination()->create();
+        ElectionCandidate::factory(15)->uniqueCombination()->create();
 
         Vote::factory(40)->uniqueCombination()->create();
 
