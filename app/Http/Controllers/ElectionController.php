@@ -15,8 +15,8 @@ class ElectionController extends Controller
     {
         $elections = Election::with('candidates')
             ->withCount('candidates')
-            ->orderBy('candidates_count', 'desc')
-            ->orderBy('election_date', 'desc')->get();
+            ->orderBy('election_date', 'desc')
+            ->orderBy('candidates_count', 'desc')->get();
 
         return view('elections.index', compact('elections'));
     }

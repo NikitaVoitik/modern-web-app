@@ -12,11 +12,14 @@
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
+                    <x-nav-link :href="route('dashboard')" :active="Str::startsWith(request()->path(),'dashboard')">
                         {{ __('Vote') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('elections.index')" :active="request()->routeIs('dashboard')">
+                    <x-nav-link :href="route('elections.index')" :active="Str::startsWith(request()->path(),'elections')">
                         {{ __('Elections') }}
+                    </x-nav-link>
+                    <x-nav-link :href="route('candidates.index')" :active="Str::startsWith(request()->path(),'candidates')">
+                        {{ __('Candidates') }}
                     </x-nav-link>
                 </div>
             </div>
