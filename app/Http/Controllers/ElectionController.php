@@ -39,7 +39,9 @@ class ElectionController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $election = Election::with('candidates')->findOrFail($id);
+
+        return view('elections.show', compact('election'));
     }
 
     /**

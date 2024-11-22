@@ -12,6 +12,7 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::get('/elections', [\App\Http\Controllers\ElectionController::class, 'index'])->name('elections.index');
+Route::get('/elections/{id}', [\App\Http\Controllers\ElectionController::class, 'show'])->name('elections.show');
 
 
 Route::middleware('auth')->group(function () {
