@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\ElectionController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\CandidateController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -11,8 +13,10 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::get('/elections', [\App\Http\Controllers\ElectionController::class, 'index'])->name('elections.index');
-Route::get('/elections/{id}', [\App\Http\Controllers\ElectionController::class, 'show'])->name('elections.show');
+Route::get('/elections', [ElectionController::class, 'index'])->name('elections.index');
+Route::get('/elections/{id}', [ElectionController::class, 'show'])->name('elections.show');
+
+Route::get('/candidates', [CandidateController::class, 'index'])->name('elections.index');
 
 
 Route::middleware('auth')->group(function () {
