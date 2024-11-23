@@ -18,7 +18,8 @@ Route::get('/elections/{id}', [ElectionController::class, 'show'])->name('electi
 
 Route::get('/candidates', [CandidateController::class, 'index'])->name('candidates.index');
 Route::get('/candidates/{id}', [CandidateController::class, 'show'])->name('candidates.show');
-
+Route::get('/candidates/{id}/edit', [CandidateController::class, 'edit'])->name('candidates.edit');
+Route::patch('/candidates/{id}', [CandidateController::class, 'update'])->name('candidates.update');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

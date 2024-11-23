@@ -8,19 +8,24 @@
     <div class="py-12">
         <div class="max-w-4xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6">
-                    <h3 class="text-2xl font-bold text-gray-800 dark:text-gray-200">
-                        {{ $candidate->name }}
-                    </h3>
-                    <p class="mt-2 text-lg text-gray-600 dark:text-gray-400">
-                        Party: {{ $candidate->party }}
-                    </p>
-                    <p class="mt-2 text-gray-500 dark:text-gray-300">
-                        Age: {{ $candidate->age }}
-                    </p>
-                    <p class="mt-2 text-gray-500 dark:text-gray-300">
-                        Biography: {{ $candidate->bio }}
-                    </p>
+                <div class="p-6 flex justify-between items-center">
+                    <div>
+                        <h3 class="text-2xl font-bold text-gray-800 dark:text-gray-200">
+                            {!! $candidate->name !!}
+                        </h3>
+                        <p class="mt-2 text-lg text-gray-600 dark:text-gray-400">
+                            Party: {{ $candidate->party }}
+                        </p>
+                        {{-- Uncomment if needed --}}
+                        {{-- <p class="mt-2 text-gray-500 dark:text-gray-300">Age: {{ $candidate->age }}</p> --}}
+                        {{-- <p class="mt-2 text-gray-500 dark:text-gray-300">Biography: {{ $candidate->bio }}</p> --}}
+                    </div>
+                    <div>
+                        <a href="{{ route('candidates.edit', $candidate->id) }}"
+                           class="px-4 py-2 bg-blue-600 text-white text-sm font-semibold rounded-lg shadow hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600 transition ease-in-out duration-150">
+                            {{ __('Edit') }}
+                        </a>
+                    </div>
                 </div>
             </div>
 
