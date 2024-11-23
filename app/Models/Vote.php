@@ -8,7 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Vote extends Model
 {
-    public $timestamps = false;
     /** @use HasFactory<VoteFactory> */
     use HasFactory;
+
+    public $timestamps = false;
 }

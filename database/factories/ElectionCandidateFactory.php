@@ -11,6 +11,7 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 class ElectionCandidateFactory extends Factory
 {
     protected static array $usedCombinations = [];
+
     /**
      * Define the model's default state.
      *

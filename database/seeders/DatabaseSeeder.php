@@ -2,13 +2,12 @@
 
 namespace Database\Seeders;
 
-use App\Models\User;
-use App\Models\Election;
 use App\Models\Candidate;
+use App\Models\Election;
 use App\Models\ElectionCandidate;
+use App\Models\User;
 use App\Models\Vote;
 use Illuminate\Database\Seeder;
-
 
 class DatabaseSeeder extends Seeder
 {
@@ -20,9 +19,7 @@ class DatabaseSeeder extends Seeder
         // Create 10 users
         User::factory(20)->create();
 
-
         Election::factory(6)->create();
-
 
         Candidate::factory(8)->create();
 

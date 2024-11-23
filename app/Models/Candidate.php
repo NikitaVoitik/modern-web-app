@@ -12,6 +12,7 @@ class Candidate extends Model
     use HasFactory;
 
     protected $fillable = ['name', 'party'];
+
     public function elections()
     {
         return $this->belongsToMany(Election::class, 'election_candidates', 'candidate_id', 'election_id');
