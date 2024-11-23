@@ -23,6 +23,11 @@
                             <x-input id="name" class="block mt-2 w-full" type="text" name="name" value="{{ $candidate->name }}" required autofocus />
                         </div>
 
+                        <div class="mb-6">
+                            <x-label for="party" :value="__('Party')" class="text-lg font-medium text-gray-800 dark:text-gray-200" />
+                            <x-input id="party" class="block mt-2 w-full" type="text" name="party" value="{{ $candidate->party }}" required :autofocus="false"/>
+                        </div>
+
                         <!-- Elections -->
                         <div class="mb-6">
                             <h4 class="text-xl font-semibold text-gray-800 dark:text-gray-200">

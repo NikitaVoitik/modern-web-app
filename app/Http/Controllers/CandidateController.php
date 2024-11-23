@@ -38,7 +38,7 @@ class CandidateController extends Controller
     public function update(Request $request, int $id)
     {
         $candidate = Candidate::findOrFail($id);
-        $candidate->update($request->only('name'));
+        $candidate->update($request->only('name', 'party'));
 
         $candidate->elections()->sync($request->input('elections', []));
 
