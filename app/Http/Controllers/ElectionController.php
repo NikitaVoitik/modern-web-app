@@ -25,7 +25,7 @@ class ElectionController extends Controller
      */
     public function create()
     {
-        //
+        return view('elections.create');
     }
 
     /**
@@ -33,7 +33,15 @@ class ElectionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'election_date' => ['required', 'date'],
+        ]);
+
+        $election = Election::create([
+            'election_date' => $request->election_date,
+        ]);
+
+        return redirect()->route('elections.show', $election->id);
     }
 
     /**
@@ -51,7 +59,9 @@ class ElectionController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $election = Election::findOrFail($id);
+
+        return view('elections.edit', compact('election'));
     }
 
     /**
@@ -59,7 +69,10 @@ class ElectionController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $election = Election::findOrFail($id);
+        $election->update($request->only('election_date'));
+
+        return redirect()->route('elections.show', $election->id);
     }
 
     /**
@@ -67,6 +80,9 @@ class ElectionController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $election = Election::findOrFail($id);
+        $election->delete();
+
+        return redirect()->route('elections.index');
     }
 }

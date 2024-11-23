@@ -12,7 +12,12 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::get('/elections', [ElectionController::class, 'index'])->name('elections.index');
+Route::get('/elections/create', [ElectionController::class, 'create'])->name('elections.create');
+Route::post('/elections', [ElectionController::class, 'store'])->name('elections.store');
 Route::get('/elections/{id}', [ElectionController::class, 'show'])->name('elections.show');
+Route::get('/elections/{id}/edit', [ElectionController::class, 'edit'])->name('elections.edit');
+Route::patch('/elections/{id}', [ElectionController::class, 'update'])->name('elections.update');
+Route::delete('/elections/{id}', [ElectionController::class, 'destroy'])->name('elections.destroy');
 
 Route::get('/candidates/', [CandidateController::class, 'index'])->name('candidates.index');
 Route::get('/candidates/create', [CandidateController::class, 'create'])->name('candidates.create');
