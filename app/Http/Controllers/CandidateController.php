@@ -44,4 +44,12 @@ class CandidateController extends Controller
 
         return redirect()->route('candidates.show', $candidate->id);
     }
+
+    public function destroy(int $id)
+    {
+        $candidate = Candidate::findOrFail($id);
+        $candidate->delete();
+
+        return redirect()->route('candidates.index');
+    }
 }
