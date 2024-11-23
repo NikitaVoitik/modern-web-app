@@ -5,9 +5,7 @@ use App\Http\Controllers\ElectionController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [ElectionController::class, 'index'])->name('elections.index');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
