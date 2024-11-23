@@ -45,6 +45,31 @@ class CandidateController extends Controller
         return redirect()->route('candidates.show', $candidate->id);
     }
 
+    public function create()
+    {
+        $elections = Election::all();
+
+        return view('candidates.create', compact('elections'));
+    }
+
+    public function store(Request $request)
+    {
+        $request->validate([
+            'name' => ['required', 'string', 'min:5', 'max:255'],
+            'party' => ['required', 'string', 'min:2', 'max:255'],
+            'elections' => ['nullable', 'array'],
+        ]);
+
+        $candidate = Candidate::create([
+            'name' => $request->name,
+            'party' => $request->party,
+        ]);
+
+        $candidate->elections()->sync($request->elections);
+
+        return redirect()->route('candidates.show', $candidate->id);
+    }
+
     public function destroy(int $id)
     {
         $candidate = Candidate::findOrFail($id);
