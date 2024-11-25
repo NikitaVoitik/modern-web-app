@@ -21,7 +21,7 @@
                                 <span class="font-medium">Date:</span> {{ $election->election_date }}
                             </p>
                             <button type="submit"
-                                    class="px-4 py-2 bg-green-600 text-white text-sm font-semibold rounded-lg shadow hover:bg-green-700 dark:bg-green-500 dark:hover:bg-green-600 transition ease-in-out duration-150">
+                                    class="m-2 px-4 py-2 bg-green-600 text-white text-sm font-semibold rounded-lg shadow hover:bg-green-700 dark:bg-green-500 dark:hover:bg-green-600 transition ease-in-out duration-150">
                                 {{ __('Vote') }}
                             </button>
                         </div>
@@ -40,18 +40,17 @@
                                         class="mr-2 rounded-md"
                                         onclick="handleCheckboxClick(this)"
                                     >
-                                    <div>{{ $candidateToElectionCandidateMap[$candidate->id]  }}</div>
-                                    <span>
-                                <h4 class="text-xl font-semibold text-gray-800 dark:text-gray-200">
-                                    {{ $candidate->name }}
-                                </h4>
-                                <p class="mt-2 text-gray-600 dark:text-gray-400">
-                                    <span class="font-medium">Party:</span> {{ $candidate->party }}
-                                </p>
-                                <p class="text-sm text-gray-500 dark:text-gray-300">
-                                    Votes: {{ $votesMap[$candidate->id] ?? 0 }}
-                                </p>
-                                    </span>
+                                    <div>
+                                        <h4 class="text-xl font-semibold text-gray-800 dark:text-gray-200">
+                                            {{ $candidate->name }}
+                                        </h4>
+                                        <p class="mt-2 text-gray-600 dark:text-gray-400">
+                                            <span class="font-medium">Party:</span> {{ $candidate->party }}
+                                        </p>
+                                        <p class="text-sm text-gray-500 dark:text-gray-300">
+                                            Votes: {{ $votesMap[$candidate->id] ?? 0 }}
+                                        </p>
+                                    </div>
                                 </div>
                             </a>
                         @endforeach
