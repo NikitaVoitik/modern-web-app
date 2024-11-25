@@ -9,20 +9,22 @@ use Illuminate\Http\Request;
 
 class VoteController extends Controller
 {
-    public function index()
-    {
-        $elections = Election::live()->with('candidates')->get();
-        $electionCandidates = ElectionCandidate::whereIn('election_id', $elections->pluck('id'))
-            ->get();
+public function index()
+{
+    $elections = Election::live()->with('candidates')->get();
 
-        $candidateToElectionCandidateMap = $electionCandidates->mapWithKeys(function ($electionCandidate) {
+    $elections = $elections->filter(function ($election) {
+        return !auth()->user()->votedInElection($election->id);
+    });
+
+    $candidateToElectionCandidateMap = ElectionCandidate::whereIn('election_id', $elections->pluck('id'))
+        ->get()
+        ->mapWithKeys(function ($electionCandidate) {
             return [$electionCandidate->candidate_id => $electionCandidate->id];
         });
 
-
-
-        return view('vote.index', compact('elections', 'candidateToElectionCandidateMap'));
-    }
+    return view('vote.index', compact('elections', 'candidateToElectionCandidateMap'));
+}
 
     public function store()
     {

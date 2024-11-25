@@ -27,13 +27,18 @@ class Candidate extends Model
 
     public function getVotesAllElections()
     {
-        $electionCandidates = ElectionCandidate::where('candidate_id', $this->id)->get();
-        $votesMap = [];
+        $electionCandidateIds = ElectionCandidate::where('candidate_id', $this->id)->pluck('id');
+        $votes = Vote::whereIn('election_candidate_id', $electionCandidateIds)
+            ->select('election_candidate_id', \DB::raw('count(*) as votes_count'))
+            ->groupBy('election_candidate_id')
+            ->get()
+            ->pluck('votes_count', 'election_candidate_id');
 
-        foreach ($electionCandidates as $electionCandidate) {
-            $votesCount = Vote::where('election_candidate_id', $electionCandidate->id)->count();
-            $votesMap[$electionCandidate->election_id] = $votesCount;
+        $votesMap = [];
+        foreach ($electionCandidateIds as $electionCandidateId) {
+            $votesMap[$electionCandidateId] = $votes->get($electionCandidateId, 0);
         }
+
         return $votesMap;
     }
 }

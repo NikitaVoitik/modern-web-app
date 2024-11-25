@@ -16,7 +16,7 @@ Route::middleware('auth')->group(function () {
 });
 
 
-Route::get('/candidates/', [CandidateController::class, 'index'])->name('candidates.index');
+Route::get('/candidates', [CandidateController::class, 'index'])->name('candidates.index');
 Route::middleware('auth')->group(function () {
     Route::middleware(AdminMiddleware::class)->group(function () {
         Route::resource('candidates', CandidateController::class)->except(['index', 'show']);
@@ -25,8 +25,10 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::get('/vote', [VoteController::class, 'index'])->name('vote.index');
+Route::middleware('auth')->group(function () {
+    Route::post('/vote', [VoteController::class, 'store'])->name('vote.store');
+});
 
-Route::post('/vote', [VoteController::class, 'store'])->name('vote.store');
 
 
 Route::middleware('auth')->group(function () {
