@@ -1,6 +1,6 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             {{ __('Election Details') }}
         </h2>
     </x-slot>
@@ -24,24 +24,7 @@
                 </div>
             </div>
 
-            <!-- Candidates Section -->
-            <div class="mt-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 p-2 overflow-visible">
-                @foreach($election->candidates as $candidate)
-                    <a href="{{ route('candidates.show', $candidate->id) }}" class="bg-white dark:bg-gray-800 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300">
-                        <div class="p-6">
-                            <h4 class="text-xl font-semibold text-gray-800 dark:text-gray-200">
-                                {{ $candidate->name }}
-                            </h4>
-                            <p class="mt-2 text-gray-600 dark:text-gray-400">
-                                <span class="font-medium">Party:</span> {{ $candidate->party }}
-                            </p>
-                            <p class="text-sm text-gray-500 dark:text-gray-300">
-                                Votes: {{ $votesMap[$candidate->id] ?? 0 }}
-                            </p>
-                        </div>
-                    </a>
-                @endforeach
-            </div>
+            <x-candidates.list :showVotes="true" :votesMap="$votesMap" :election="$election"/>
         </div>
     </div>
 </x-app-layout>
