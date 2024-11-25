@@ -26,6 +26,8 @@ Route::middleware('auth')->group(function () {
 
 Route::get('/vote', [VoteController::class, 'index'])->name('vote.index');
 
+Route::post('/vote', [VoteController::class, 'store'])->name('vote.store');
+
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
