@@ -62,4 +62,12 @@ class User extends Authenticatable
     {
         return $this->is_admin;
     }
+
+    public function votedInElection($election_id)
+    {
+        $election_candidate_ids = ElectionCandidate::where('election_id', $election_id)->pluck('id');
+        return Vote::whereIn('election_candidate_id', $election_candidate_ids)
+            ->where('user_id', $this->id)
+            ->exists();
+    }
 }

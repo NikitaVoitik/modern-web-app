@@ -8,6 +8,7 @@
         <div class="py-12">
             <form action="{{ route('vote.store') }}" method="POST">
                 @csrf
+                <input type="text" name="election_id" class="hidden" value="{{ $election->id }}">
                 <div class="max-w-4xl mx-auto sm:px-6 lg:px-8">
                     <div class="bg-gradient-to-r from-blue-500 to-indigo-600 text-white rounded-lg shadow-lg">
                         <div class="p-8">
@@ -24,6 +25,13 @@
                                     class="m-2 px-4 py-2 bg-green-600 text-white text-sm font-semibold rounded-lg shadow hover:bg-green-700 dark:bg-green-500 dark:hover:bg-green-600 transition ease-in-out duration-150">
                                 {{ __('Vote') }}
                             </button>
+                            <div class="alert alert-danger text-red-600">
+                                <ul>
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
                         </div>
                     </div>
 
@@ -59,6 +67,8 @@
             </form>
         </div>
     @endforeach
+    @if ($errors->any())
+@endif
 </x-app-layout>
 
 <script>

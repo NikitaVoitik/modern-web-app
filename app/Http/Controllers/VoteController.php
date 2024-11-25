@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Election;
 use App\Models\ElectionCandidate;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class VoteController extends Controller
@@ -18,16 +19,20 @@ class VoteController extends Controller
             return [$electionCandidate->candidate_id => $electionCandidate->id];
         });
 
+
+
         return view('vote.index', compact('elections', 'candidateToElectionCandidateMap'));
     }
 
     public function store()
     {
-        //dd(request()->all());
         request()->validate([
             'candidate_checkbox' => ['required', 'exists:election_candidates,id'],
+            'election_id' => ['required', 'exists:elections,id'],
         ]);
-
+        if (auth()->user()->votedInElection(request('election_id'))){
+            return redirect()->route('vote.index')->withErrors(['error' => 'You have already voted in this election']);
+        }
 
         auth()->user()->votes()->create([
             'election_candidate_id' => request('candidate_checkbox'),
