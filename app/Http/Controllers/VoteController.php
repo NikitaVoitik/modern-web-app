@@ -15,6 +15,7 @@ class VoteController extends Controller
             //dd(auth()->user()->findVotedFor($elections[$i]->id)->value('id'));
             $votedMap[$elections[$i]->id] = auth()->user()->findVotedFor($elections[$i]->id)->value('id');
         }
+        //dd($votedMap);
         return view('vote.voted', compact('elections', 'votedMap'));
     }
     public function index()
