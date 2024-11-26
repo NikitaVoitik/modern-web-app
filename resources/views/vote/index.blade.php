@@ -55,9 +55,6 @@
                                         <p class="mt-2 text-gray-600 dark:text-gray-400">
                                             <span class="font-medium">Party:</span> {{ $candidate->party }}
                                         </p>
-                                        <p class="text-sm text-gray-500 dark:text-gray-300">
-                                            Votes: {{ $votesMap[$candidate->id] ?? 0 }}
-                                        </p>
                                     </div>
                                 </div>
                             </a>

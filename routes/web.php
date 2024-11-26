@@ -7,6 +7,8 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Middleware\AdminMiddleware;
 
+Route::redirect('/', '/vote');
+
 Route::get('/elections', [ElectionController::class, 'index'])->name('elections.index');
 Route::middleware('auth')->group(function () {
     Route::middleware(AdminMiddleware::class)->group(function () {
@@ -24,9 +26,12 @@ Route::middleware('auth')->group(function () {
     Route::get('/candidates/{id}', [CandidateController::class, 'show'])->name('candidates.show');
 });
 
-Route::get('/vote', [VoteController::class, 'index'])->name('vote.index');
+
+
 Route::middleware('auth')->group(function () {
+    Route::get('/vote', [VoteController::class, 'index'])->name('vote.index');
     Route::post('/vote', [VoteController::class, 'store'])->name('vote.store');
+    Route::get('/voted', [VoteController::class, 'voted'])->name('vote.voted');
 });
 
 

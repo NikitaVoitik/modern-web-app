@@ -23,6 +23,10 @@
                                 :active="Str::startsWith(request()->path(),'candidates')">
                         {{ __('Candidates') }}
                     </x-navigation.link>
+                    <x-navigation.link :href="route('vote.voted')"
+                                       :active="Str::startsWith(request()->path(),'voted')">
+                        {{ __('Your Votes') }}
+                    </x-navigation.link>
                 </div>
             </div>
 
