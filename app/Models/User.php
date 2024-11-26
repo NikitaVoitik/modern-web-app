@@ -71,10 +71,11 @@ class User extends Authenticatable
         $vote = Vote::whereIn('election_candidate_id', $election_candidate_ids)
             ->where('user_id', $this->id)
             ->first();
+        //dd($vote);
         if ($vote) {
             $candidate_id = ElectionCandidate::where('id', $vote->election_candidate_id)
                 ->value('candidate_id');
-            //dd($election_id, $vote, $candidate_id, Candidate::find($candidate_id));
+            #dd($this->id, $vote, $candidate_id, Candidate::find($candidate_id));
             return Candidate::find($candidate_id);
         }
 
