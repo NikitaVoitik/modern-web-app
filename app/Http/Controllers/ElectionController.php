@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Candidate;
 use App\Models\Election;
 use Illuminate\Http\Request;
 
@@ -86,9 +87,12 @@ class ElectionController extends Controller
      */
     public function destroy(string $id)
     {
-        $election = Election::findOrFail($id);
-        $election->delete();
+        $election = Election::withCount('candidates')->findOrFail($id);
+        if ($election->candidates_count > 0) {
+            return redirect()->route('elections.show', $election->id)->withErrors(['error' => 'Cannot delete election with candidates']);
+        }
 
         return redirect()->route('elections.index');
     }
+
 }

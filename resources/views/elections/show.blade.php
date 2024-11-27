@@ -22,6 +22,13 @@
                     <x-form.edit-delete :editRoute="route('elections.edit', $election->id)"
                                         :deleteRoute="route('elections.destroy', $election->id)"/>
                 </div>
+                <div class="alert alert-danger text-red-600 p-4">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
             </div>
 
             <!-- Candidates Section -->

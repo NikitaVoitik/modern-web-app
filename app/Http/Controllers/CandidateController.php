@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Candidate;
 use App\Models\Election;
+use App\Models\Vote;
 use Illuminate\Http\Request;
 
 class CandidateController extends Controller
@@ -72,9 +73,17 @@ class CandidateController extends Controller
 
     public function destroy(int $id)
     {
-        $candidate = Candidate::findOrFail($id);
-        $candidate->delete();
+        $candidateHasVotes = Vote::where('candidate_id', $id)->exists();
+
+        if ($candidateHasVotes) {
+            return redirect()
+                ->route('candidates.show', $id)
+                ->withErrors(['error' => 'Cannot delete candidate with votes']);
+        }
+
+        Candidate::findOrFail($id)->delete();
 
         return redirect()->route('candidates.index');
     }
+
 }
