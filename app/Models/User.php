@@ -69,9 +69,9 @@ class User extends Authenticatable
 
     public function findVotedFor($election_id)
     {
-        return $this->votes()->with(['candidate.ElectionCandidate' => function ($query) use ($election_id) {
-            $query->where('election_id', $election_id);
-        }])->get()[0]->candidate;
+        return $this->votes()->with(['electionCandidate.election' => function ($query) use ($election_id) {
+            $query->where('id', $election_id);
+        }])->get()->whereNotNull('electionCandidate.election')->first()->ElectionCandidate->candidate;
     }
 
     /**

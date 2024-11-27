@@ -52,7 +52,7 @@ class ElectionController extends Controller
     {
         $election = Election::with(['candidates.electionCandidate' => function ($query) use ($id) {
             $query->where('election_id', $id)->withCount('votes');
-        }])->findOrFail($id);
+        }])->withCount('votes')->findOrFail($id);
         $votesMap = [];
         foreach ($election->candidates as $candidate) {
             $votesMap[$candidate->id] = $candidate->electionCandidate->first()->votes_count;
