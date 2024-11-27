@@ -1,6 +1,6 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
+        <h2 class="font-semibold text-xl text-gray-800  leading-tight">
             {{ __('Live Elections') }}
         </h2>
     </x-slot>
@@ -22,7 +22,7 @@
                                 <span class="font-medium">Date:</span> {{ $election->election_date }}
                             </p>
                             <button type="submit"
-                                    class="m-2 px-4 py-2 bg-green-600 text-white text-sm font-semibold rounded-lg shadow hover:bg-green-700 dark:bg-green-500 dark:hover:bg-green-600 transition ease-in-out duration-150">
+                                    class="m-2 px-4 py-2 bg-green-600 text-white text-sm font-semibold rounded-lg shadow hover:bg-green-700  dark:hover:bg-green-600 transition ease-in-out duration-150">
                                 {{ __('Vote') }}
                             </button>
                             <div class="alert alert-danger text-red-600">
@@ -39,7 +39,7 @@
                     <div class="mt-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 p-2 overflow-visible">
                         @foreach($election->candidates as $candidate)
                             <a href="{{ route('candidates.show', $candidate->id) }}"
-                               class="bg-white dark:bg-gray-800 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300">
+                               class="bg-white  rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300">
                                 <div class="p-6 flex items-center">
                                     <input
                                         type="checkbox"
@@ -49,10 +49,10 @@
                                         onclick="handleCheckboxClick(this)"
                                     >
                                     <div>
-                                        <h4 class="text-xl font-semibold text-gray-800 dark:text-gray-200">
+                                        <h4 class="text-xl font-semibold text-gray-800 ">
                                             {{ $candidate->name }}
                                         </h4>
-                                        <p class="mt-2 text-gray-600 dark:text-gray-400">
+                                        <p class="mt-2 text-gray-600 ">
                                             <span class="font-medium">Party:</span> {{ $candidate->party }}
                                         </p>
                                     </div>

@@ -6,7 +6,7 @@
 
     <!-- Election Date -->
     <div class="mb-6">
-        <x-form.label for="election_date" :value="__('Election Date')" class="text-lg font-medium text-gray-800 dark:text-gray-200" />
+        <x-form.label for="election_date" :value="__('Election Date')" class="text-lg font-medium text-gray-800 " />
         <x-form.input id="election_date" class="block mt-2 w-full" type="date" name="election_date" :value="old('election_date', $election->election_date ?? '')" required autofocus />
     </div>
 
