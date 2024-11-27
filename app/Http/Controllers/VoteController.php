@@ -10,7 +10,7 @@ class VoteController extends Controller
     public function voted()
     {
         $user = auth()->user();
-        $elections = $user->findVotedInElections();
+        $elections = $user->getVotedElections();
 
         return view('vote.voted', compact('elections'));
     }
@@ -20,7 +20,7 @@ class VoteController extends Controller
         $elections = Election::live()->with('candidates')->get();
 
         $elections = $elections->filter(function ($election) {
-            return !auth()->user()->votedInElection($election->id);
+            return !auth()->user()->hasVotedInElection($election->id);
         });
 
         $candidateToElectionCandidateMap = ElectionCandidate::whereIn('election_id', $elections->pluck('id'))
@@ -38,7 +38,7 @@ class VoteController extends Controller
             'candidate_checkbox' => ['required', 'exists:election_candidates,id'],
             'election_id' => ['required', 'exists:elections,id'],
         ]);
-        if (auth()->user()->votedInElection(request('election_id'))) {
+        if (auth()->user()->hasVotedInElection(request('election_id'))) {
             return redirect()->route('vote.index')->withErrors(['error' => 'You have already voted in this election']);
         }
 

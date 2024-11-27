@@ -10,8 +10,7 @@ use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable
 {
-    /** @use HasFactory<UserFactory> */
-    use HasFactory;
+    use HasFactory, Notifiable;
 
     use Notifiable;
 
@@ -40,12 +39,17 @@ class User extends Authenticatable
         'remember_token',
     ];
 
+    public function votes()
+    {
+        return $this->hasMany(Vote::class, 'user_id');
+    }
+
     public function isAdmin()
     {
         return $this->is_admin;
     }
 
-    public function votedInElection($election_id)
+    public function hasVotedInElection($election_id)
     {
         $election_candidate_ids = ElectionCandidate::where('election_id', $election_id)->pluck('id');
         return Vote::whereIn('election_candidate_id', $election_candidate_ids)
@@ -53,25 +57,25 @@ class User extends Authenticatable
             ->exists();
     }
 
-    public function findVotedInElections()
+    public function getVotedElections()
     {
         return $this->votes()
             ->with('electionCandidate.election')
             ->get()
             ->pluck('electionCandidate.election')
+            ->sortByDesc('election_date')
             ->values();
     }
 
-    public function votes()
+    public function getVotedCandidateForElection($election_id)
     {
-        return $this->hasMany(Vote::class, 'user_id');
-    }
-
-    public function findVotedFor($election_id)
-    {
-        return $this->votes()->with(['electionCandidate.election' => function ($query) use ($election_id) {
+        $votes = $this->votes()->with(['electionCandidate.election' => function ($query) use ($election_id) {
             $query->where('id', $election_id);
-        }])->get()->whereNotNull('electionCandidate.election')->first()->ElectionCandidate->candidate;
+        }])->get()->whereNotNull('electionCandidate.election');
+        if ($votes->isEmpty()) {
+            return null;
+        }
+        return $votes->first()->ElectionCandidate->candidate;
     }
 
     /**

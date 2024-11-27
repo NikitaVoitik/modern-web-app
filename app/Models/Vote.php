@@ -34,10 +34,6 @@ class Vote extends Model
         return $this->hasOneThrough(
             Candidate::class,
             ElectionCandidate::class,
-            'id', // Foreign key on the ElectionCandidate table
-            'id', // Foreign key on the Candidate table
-            'election_candidate_id', // Local key on the Vote table
-            'candidate_id'  // Local key on the ElectionCandidate table
         );
     }
 
@@ -46,10 +42,6 @@ class Vote extends Model
         return $this->hasOneThrough(
             Election::class,
             ElectionCandidate::class,
-            'id', // Foreign key on the ElectionCandidate table
-            'id', // Foreign key on the Election table
-            'election_candidate_id', // Local key on the Vote table
-            'election_id'  // Local key on the ElectionCandidate table
         );
     }
 }

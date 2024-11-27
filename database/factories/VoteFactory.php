@@ -2,10 +2,8 @@
 
 namespace Database\Factories;
 
-use App\Models\Election;
 use App\Models\ElectionCandidate;
 use App\Models\Vote;
-use Illuminate\Support\Facades\Log;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -35,14 +33,14 @@ class VoteFactory extends Factory
     {
         return $this->state(function (array $attributes) {
             $results = [];
-            for (;self::$user_id <= 95; self::$user_id++){
-                for (;self::$election_id <= 5;){
+            for (;self::$user_id <= 95; self::$user_id++) {
+                for (;self::$election_id <= 5;) {
                     do {
                         $election_candidate_id = ElectionCandidate::where('election_id', self::$election_id)->pluck('id')->toArray();
                         $election_candidate_id = $election_candidate_id[array_rand($election_candidate_id)];
                         $comb = $election_candidate_id . '-' . self::$user_id;
                         $check = in_array($comb, self::$usedCombinations);
-                    } while($check);
+                    } while ($check);
                     self::$usedCombinations[] = $comb;
                     self::$election_id++;
                     return [

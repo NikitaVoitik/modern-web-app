@@ -34,7 +34,7 @@ class RegisteredUserController extends Controller
         Log::info('Request data:', $request->all());
         $request->validate([
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:' . User::class],
-            'passport_number' => ['required', 'string', 'max:255', 'unique:' . User::class],
+            'passport_number' => ['required', 'string', 'max:255', 'unique:' . User::class, 'regex:/^[A-Z0-9]{6,9}$/'],
             'first_name' => ['required', 'string', 'max:255'],
             'last_name' => ['required', 'string', 'max:255'],
             'date_of_birth' => ['required', 'date', 'before:-18 years'],

@@ -13,7 +13,7 @@ class Election extends Model
     /** @use HasFactory<ElectionFactory> */
     use HasFactory;
 
-    protected $fillable =[
+    protected $fillable = [
         'election_date',
     ];
     public function candidates()
@@ -21,7 +21,7 @@ class Election extends Model
         return $this->belongsToMany(Candidate::class, 'election_candidates', 'election_id', 'candidate_id');
     }
 
-    public function electionCandidate()
+    public function electionCandidates()
     {
         return $this->hasMany(ElectionCandidate::class);
     }
@@ -31,15 +31,11 @@ class Election extends Model
         return $this->hasManyThrough(
             Vote::class,
             ElectionCandidate::class,
-            'election_id', // Foreign key on the ElectionCandidate table
-            'election_candidate_id', // Foreign key on the Vote table
-            'id', // Local key on the Election table
-            'id'  // Local key on the ElectionCandidate table
         );
     }
 
-    public function scopeLive(Builder $query)
+    public function scopeLive($query)
     {
-        return $query->where('election_date', '=', Carbon::now()->toDateString());
+        return $query->whereDate('election_date', Carbon::today());
     }
 }

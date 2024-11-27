@@ -22,7 +22,7 @@ class Candidate extends Model
     {
         return $this->hasManyThrough(
             Vote::class,
-            ElectionCandidate::class
+            ElectionCandidate::class,
         );
     }
 

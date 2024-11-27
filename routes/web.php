@@ -2,10 +2,10 @@
 
 use App\Http\Controllers\CandidateController;
 use App\Http\Controllers\ElectionController;
-use App\Http\Controllers\VoteController;
 use App\Http\Controllers\ProfileController;
-use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\VoteController;
 use App\Http\Middleware\AdminMiddleware;
+use Illuminate\Support\Facades\Route;
 
 Route::redirect('/', '/vote');
 

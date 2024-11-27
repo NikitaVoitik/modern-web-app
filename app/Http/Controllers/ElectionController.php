@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Candidate;
 use App\Models\Election;
 use Illuminate\Http\Request;
 
@@ -35,7 +34,7 @@ class ElectionController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'election_date' => ['required', 'date'],
+            'election_date' => ['required', 'date_format:d-m-Y'],
         ]);
 
         $election = Election::create([
@@ -57,7 +56,8 @@ class ElectionController extends Controller
         foreach ($election->candidates as $candidate) {
             $votesMap[$candidate->id] = $candidate->electionCandidate->first()->votes_count;
         }
-        $votedFor = auth()->user()->findVotedFor($election->id)->id;
+        $votedFor = auth()->user()->getVotedCandidateForElection($election->id);
+        $votedFor = $votedFor ? $votedFor->id : null;
         return view('elections.show', compact('election', 'votesMap', 'votedFor'));
     }
 
