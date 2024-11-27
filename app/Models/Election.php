@@ -21,23 +21,21 @@ class Election extends Model
         return $this->belongsToMany(Candidate::class, 'election_candidates', 'election_id', 'candidate_id');
     }
 
-    public function getVotesCandidate($candidate_id)
+    public function electionCandidate()
     {
-        $election_candidate_id = ElectionCandidate::where('election_id', $this->id)
-            ->where('candidate_id', $candidate_id)->get('id');
-        return Vote::where('election_candidate_id', $election_candidate_id->id)->count();
+        return $this->hasMany(ElectionCandidate::class);
     }
 
-    public function getVotesAllCandidates()
+    public function votes()
     {
-        $electionCandidates = ElectionCandidate::where('election_id', $this->id)->get();
-        $votesMap = [];
-
-        foreach ($electionCandidates as $electionCandidate) {
-            $votesCount = Vote::where('election_candidate_id', $electionCandidate->id)->count();
-            $votesMap[$electionCandidate->candidate_id] = $votesCount;
-        }
-        return $votesMap;
+        return $this->hasManyThrough(
+            Vote::class,
+            ElectionCandidate::class,
+            'election_id', // Foreign key on the ElectionCandidate table
+            'election_candidate_id', // Foreign key on the Vote table
+            'id', // Local key on the Election table
+            'id'  // Local key on the ElectionCandidate table
+        );
     }
 
     public function scopeLive(Builder $query)

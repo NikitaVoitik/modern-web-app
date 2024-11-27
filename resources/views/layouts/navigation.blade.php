@@ -12,7 +12,7 @@
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-navigation.link :href="route('vote.index')" :active="Str::startsWith(request()->path(),'vote')">
+                    <x-navigation.link :href="route('vote.index')" :active="request()->path() === 'vote'">
                         {{ __('Vote') }}
                     </x-navigation.link>
                     <x-navigation.link :href="route('elections.index')"
@@ -24,7 +24,7 @@
                         {{ __('Candidates') }}
                     </x-navigation.link>
                     <x-navigation.link :href="route('vote.voted')"
-                                       :active="Str::startsWith(request()->path(),'voted')">
+                                       :active="request()->path() === 'voted'" >
                         {{ __('Your Votes') }}
                     </x-navigation.link>
                 </div>

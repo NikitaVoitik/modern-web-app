@@ -13,6 +13,16 @@ class ElectionCandidate extends Model
 
     public function votes()
     {
-        $this->hasMany(Vote::class);
+        return $this->hasMany(Vote::class);
+    }
+
+    public function candidate()
+    {
+        return $this->belongsTo(Candidate::class);
+    }
+
+    public function election()
+    {
+        return $this->belongsTo(Election::class, 'election_id');
     }
 }

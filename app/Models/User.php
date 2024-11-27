@@ -40,11 +40,6 @@ class User extends Authenticatable
         'remember_token',
     ];
 
-    public function votes()
-    {
-        return $this->hasMany(Vote::class);
-    }
-
     public function isAdmin()
     {
         return $this->is_admin;
@@ -60,26 +55,23 @@ class User extends Authenticatable
 
     public function findVotedInElections()
     {
-        $election_candidate_ids = Vote::where('user_id', $this->id)->pluck('election_candidate_id');
-        $elections_ids = ElectionCandidate::whereIn('id', $election_candidate_ids)->pluck('election_id');
-        return Election::whereIn('id', $elections_ids);
+        return $this->votes()
+            ->with('electionCandidate.election')
+            ->get()
+            ->pluck('electionCandidate.election')
+            ->values();
+    }
+
+    public function votes()
+    {
+        return $this->hasMany(Vote::class, 'user_id');
     }
 
     public function findVotedFor($election_id)
     {
-        $election_candidate_ids = ElectionCandidate::where('election_id', $election_id)->pluck('id');
-        $vote = Vote::whereIn('election_candidate_id', $election_candidate_ids)
-            ->where('user_id', $this->id)
-            ->first();
-        //dd($vote);
-        if ($vote) {
-            $candidate_id = ElectionCandidate::where('id', $vote->election_candidate_id)
-                ->value('candidate_id');
-            #dd($this->id, $vote, $candidate_id, Candidate::find($candidate_id));
-            return Candidate::find($candidate_id);
-        }
-
-        return null;
+        return $this->votes()->with(['candidate.ElectionCandidate' => function ($query) use ($election_id) {
+            $query->where('election_id', $election_id);
+        }])->get()[0]->candidate;
     }
 
     /**

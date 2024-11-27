@@ -23,10 +23,8 @@ class CandidateController extends Controller
     public function show(int $id)
     {
         $candidate = Candidate::with('elections')->findOrFail($id);
-        $votesMap = $candidate->getVotesAllElections();
 
-
-        return view('candidates.show', compact('candidate', 'votesMap'));
+        return view('candidates.show', compact('candidate'));
     }
 
     public function edit(int $id)
@@ -47,13 +45,6 @@ class CandidateController extends Controller
         return redirect()->route('candidates.show', $candidate->id);
     }
 
-    public function create()
-    {
-        $elections = Election::all();
-
-        return view('candidates.create', compact('elections'));
-    }
-
     public function store(Request $request)
     {
         $request->validate([
@@ -70,6 +61,13 @@ class CandidateController extends Controller
         $candidate->elections()->sync($request->elections);
 
         return redirect()->route('candidates.show', $candidate->id);
+    }
+
+    public function create()
+    {
+        $elections = Election::all();
+
+        return view('candidates.create', compact('elections'));
     }
 
     public function destroy(int $id)

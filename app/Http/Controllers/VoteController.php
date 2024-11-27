@@ -9,15 +9,12 @@ class VoteController extends Controller
 {
     public function voted()
     {
-        $elections = auth()->user()->findVotedInElections()->get();
-        $votedMap = [];
-        for ($i = 0; $i < count($elections); $i++) {
-            //dd(auth()->user()->findVotedFor($elections[$i]->id)->value('id'));
-            $votedMap[$elections[$i]->id] = auth()->user()->findVotedFor($elections[$i]->id)->value('id');
-        }
-        //dd($votedMap);
-        return view('vote.voted', compact('elections', 'votedMap'));
+        $user = auth()->user();
+        $elections = $user->findVotedInElections();
+
+        return view('vote.voted', compact('elections'));
     }
+
     public function index()
     {
         $elections = Election::live()->with('candidates')->get();

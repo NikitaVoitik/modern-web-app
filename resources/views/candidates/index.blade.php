@@ -24,8 +24,7 @@
                                     Election: {{ $election->id }} - Presidential
                                 </h5>
                                 <p class="text-sm text-gray-500">
-                                    Date: {{ $election->election_date }} |
-                                    Votes: {{ $votesMap[$election->id] ?? 0 }}
+                                    Date: {{ $election->election_date }}
                                 </p>
                             </a>
                         @endforeach
