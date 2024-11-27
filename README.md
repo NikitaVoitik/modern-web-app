@@ -10,10 +10,3 @@ Provides dynamically generated ballots with candidates for simulated elections.
 
 #### Real-Time Results
 Display live election results as votes are cast.
-
-#### Admin Panel
-Admins can manage candidates, oversee the election process, and declare results.
-
-#### Secure Voting
-Ensures each user can only vote once using secure session and data validation practices.
-

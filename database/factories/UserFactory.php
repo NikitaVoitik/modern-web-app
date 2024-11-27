@@ -5,6 +5,7 @@ namespace Database\Factories;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
 
 /**
@@ -31,7 +32,7 @@ class UserFactory extends Factory
             'email_verified_at' => now(),
             'date_of_birth' => $this->faker->dateTimeBetween('-30 years', '-18 years'),
             'passport_number' => $this->faker->unique()->bothify('??######'),
-            'password' => Hash::make('password'), // default password
+            'password' => Hash::make('password'),
             'remember_token' => Str::random(10),
         ];
     }

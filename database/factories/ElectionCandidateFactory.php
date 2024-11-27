@@ -21,7 +21,7 @@ class ElectionCandidateFactory extends Factory
     {
         return [
             'election_id' => $this->faker->numberBetween(1, 5),
-            'candidate_id' => $this->faker->numberBetween(1, 6),
+            'candidate_id' => $this->faker->numberBetween(1, 8),
         ];
     }
 

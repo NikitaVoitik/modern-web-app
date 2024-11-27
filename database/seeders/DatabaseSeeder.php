@@ -17,15 +17,15 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         // Create 10 users
-        User::factory(20)->create();
+        User::factory(100)->create();
 
         Election::factory(6)->create();
 
-        Candidate::factory(8)->create();
+        Candidate::factory(9)->create();
 
         ElectionCandidate::factory(15)->uniqueCombination()->create();
 
-        Vote::factory(80)->uniqueCombination()->create();
+        Vote::factory(400)->uniqueCombination()->create();
 
     }
 }

@@ -2,7 +2,10 @@
 
 namespace Database\Factories;
 
+use App\Models\Election;
+use App\Models\ElectionCandidate;
 use App\Models\Vote;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -11,6 +14,8 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 class VoteFactory extends Factory
 {
     protected static array $usedCombinations = [];
+    private static int $user_id = 1;
+    private static int $election_id = 1;
 
     /**
      * Define the model's default state.
@@ -21,7 +26,7 @@ class VoteFactory extends Factory
     {
         return [
             'election_candidate_id' => $this->faker->numberBetween(1, 10),
-            'user_id' => $this->faker->numberBetween(1, 20),
+            'user_id' => $this->faker->numberBetween(1, 1000),
             'created_at' => $this->faker->dateTimeBetween('-1 years', 'now'),
         ];
     }
@@ -29,17 +34,27 @@ class VoteFactory extends Factory
     public function uniqueCombination(): VoteFactory|Factory
     {
         return $this->state(function (array $attributes) {
-            do {
-                $election_candidate_id = $this->faker->numberBetween(1, 10);
-                $user_id = $this->faker->numberBetween(1, 20);
-                $combination = $election_candidate_id . '-' . $user_id;
-            } while (in_array($combination, self::$usedCombinations));
-
-            self::$usedCombinations[] = $combination;
-
+            $results = [];
+            for (;self::$user_id <= 95; self::$user_id++){
+                for (;self::$election_id <= 5;){
+                    do {
+                        $election_candidate_id = ElectionCandidate::where('election_id', self::$election_id)->pluck('id')->toArray();
+                        $election_candidate_id = $election_candidate_id[array_rand($election_candidate_id)];
+                        $comb = $election_candidate_id . '-' . self::$user_id;
+                        $check = in_array($comb, self::$usedCombinations);
+                    } while($check);
+                    self::$usedCombinations[] = $comb;
+                    self::$election_id++;
+                    return [
+                        'election_candidate_id' => $election_candidate_id,
+                        'user_id' => self::$user_id,
+                    ];
+                }
+                self::$election_id = 1;
+            }
             return [
-                'election_candidate_id' => $election_candidate_id,
-                'user_id' => $user_id,
+                'election_candidate_id' => $this->faker->numberBetween(1, 10),
+                'user_id' => $this->faker->numberBetween(1, 1000),
             ];
         });
     }
