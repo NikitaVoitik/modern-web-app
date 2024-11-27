@@ -33,7 +33,7 @@ class VoteFactory extends Factory
     {
         return $this->state(function (array $attributes) {
             $results = [];
-            for (;self::$user_id <= 95; self::$user_id++) {
+            for (;self::$user_id <= 295; self::$user_id++) {
                 for (;self::$election_id <= 5;) {
                     do {
                         $election_candidate_id = ElectionCandidate::where('election_id', self::$election_id)->pluck('id')->toArray();
