@@ -71,7 +71,7 @@ class User extends Authenticatable
     public function getVotedCandidateForElection($election_id)
     {
         $election_candidate = ElectionCandidate::where('election_id', $election_id)->pluck('id');
-        $candidate = $this->votes()->whereIn('election_candidate_id', $election_candidate->pluck('id'))->with(['electionCandidate' => function ($query) {
+        $candidate = $this->votes()->whereIn('election_candidate_id', $election_candidate)->with(['electionCandidate' => function ($query) {
             $query->with('candidate');
         }])->get()->whereNotNull('electionCandidate.election')->pluck('electionCandidate.candidate');
         if ($candidate->isEmpty()) {
