@@ -29,7 +29,7 @@ class UserFactory extends Factory
             'last_name' => $this->faker->lastName(),
             'email' => $this->faker->unique()->safeEmail(),
             'email_verified_at' => now(),
-            'date_of_birth' => $this->faker->dateTimeBetween('-30 years', '-18 years'),
+            'date_of_birth' => $this->faker->dateTimeBetween('-30 years', '-18 years')->format('d-m-Y'),
             'passport_number' => $this->faker->unique()->bothify('??######'),
             'password' => Hash::make('password'),
             'remember_token' => Str::random(10),
