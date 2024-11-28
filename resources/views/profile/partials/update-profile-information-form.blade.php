@@ -10,6 +10,7 @@
         </p>
     </header>
 
+
     <form id="send-verification" method="post" action="{{ route('verification.send') }}">
         @csrf
     </form>
@@ -17,6 +18,13 @@
     <form method="post" action="{{ route('profile.update') }}" class="mt-6 space-y-6">
         @csrf
         @method('patch')
+
+
+        <div>
+            <img class="image w-1/3 rounded-xl" src="{{ asset('storage/images/' . Auth::user()->image) }}"
+                 alt="profile_image">
+            <x-file-input name="image" label="Profile Image"/>
+        </div>
 
         <div>
             <x-input-label for="first_name" :value="__('First Name')"/>
@@ -78,11 +86,11 @@
 
             @if (session('status') === 'profile-updated')
                 <p
-                        x-data="{ show: true }"
-                        x-show="show"
-                        x-transition
-                        x-init="setTimeout(() => show = false, 2000)"
-                        class="text-sm text-gray-600 "
+                    x-data="{ show: true }"
+                    x-show="show"
+                    x-transition
+                    x-init="setTimeout(() => show = false, 2000)"
+                    class="text-sm text-gray-600 "
                 >{{ __('Saved.') }}</p>
             @endif
         </div>

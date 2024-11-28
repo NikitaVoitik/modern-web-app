@@ -16,15 +16,15 @@
                         {{ __('Vote') }}
                     </x-navigation.link>
                     <x-navigation.link :href="route('elections.index')"
-                                :active="Str::startsWith(request()->path(),'elections')">
+                                       :active="Str::startsWith(request()->path(),'elections')">
                         {{ __('Elections') }}
                     </x-navigation.link>
                     <x-navigation.link :href="route('candidates.index')"
-                                :active="Str::startsWith(request()->path(),'candidates')">
+                                       :active="Str::startsWith(request()->path(),'candidates')">
                         {{ __('Candidates') }}
                     </x-navigation.link>
                     <x-navigation.link :href="route('vote.voted')"
-                                       :active="request()->path() === 'voted'" >
+                                       :active="request()->path() === 'voted'">
                         {{ __('Your Votes') }}
                     </x-navigation.link>
                 </div>
@@ -32,6 +32,9 @@
 
             <!-- Settings Dropdown -->
             <div class="hidden sm:flex sm:items-center sm:ms-6">
+                @if (Auth::check())
+                    <img class="h-10 w-10 rounded-full object-cover" src="{{ asset('storage/images/' . Auth::user()->image) }}" alt="profile_image">
+                @endif
                 <x-dropdown align="right" width="48">
                     <x-slot name="trigger">
                         <button

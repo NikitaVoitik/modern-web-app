@@ -33,6 +33,7 @@ class UserFactory extends Factory
             'passport_number' => $this->faker->unique()->bothify('??######'),
             'password' => Hash::make('password'),
             'remember_token' => Str::random(10),
+            'image' => 'user.png',
         ];
     }
 

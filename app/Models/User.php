@@ -27,6 +27,7 @@ class User extends Authenticatable
         'last_name',
         'date_of_birth',
         'passport_number',
+        'image'
     ];
 
     /**
