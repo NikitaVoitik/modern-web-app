@@ -18,7 +18,7 @@ class ElectionFactory extends Factory
     public function definition(): array
     {
         return [
-            'election_date' => $this->faker->dateTimeThisCentury()->format('d-m-Y'),
+            'election_date' => $this->faker->dateTimeThisCentury()->format('Y-m-d'),
         ];
     }
 }
