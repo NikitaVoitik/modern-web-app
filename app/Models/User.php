@@ -41,7 +41,6 @@ class User extends Authenticatable
         'remember_token',
     ];
 
-
     public function votes()
     {
         return $this->hasMany(Vote::class, 'user_id');
