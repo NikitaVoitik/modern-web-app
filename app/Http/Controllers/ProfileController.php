@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ProfileUpdateRequest;
+use Carbon\Carbon;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -36,8 +37,12 @@ class ProfileController extends Controller
             $path = $request->file('image')->store('images', 'public');
             $user->image = basename($path);
         }
+        $user->update(array_merge(
+            $request->only('first_name', 'last_name', 'email', 'passport_number'),
+            ['date_of_birth' => Carbon::parse($request->input('date_of_birth'))->toDateString()]
+        ));
 
-        $user->update($request->only('first_name', 'last_name', 'email', 'date_of_birth', 'passport_number'));
+
         $user->save();
 
         return Redirect::route('profile.edit')->with('status', 'profile-updated');
