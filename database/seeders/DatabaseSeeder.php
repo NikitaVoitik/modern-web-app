@@ -27,9 +27,5 @@ class DatabaseSeeder extends Seeder
         ElectionCandidate::factory(25)->uniqueCombination()->create();
 
         Vote::factory(1200)->uniqueCombination()->create();
-
-        User::create(['first_name' => 'Admin', 'last_name' => 'Admin', 'email' => 'admin@example.com', 'passport_number' => 'admin', 'date_of_birth' => '2000-09-15', 'password' => Hash::make('admin'), 'is_admin' => 1]);
-        User::create(['first_name' => 'Igor', 'last_name' => 'Moroz', 'email' => 'example@example.com', 'passport_number' => 'igormoroz', 'date_of_birth' => '2000-09-15', 'password' => Hash::make('password'), 'is_admin' => 0]);
-
     }
 }

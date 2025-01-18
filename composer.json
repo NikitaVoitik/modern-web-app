@@ -7,6 +7,7 @@
     "require": {
         "php": "^8.2",
         "ext-pdo": "*",
+        "doctrine/dbal": "^4.2",
         "laravel/framework": "11.31.0.0",
         "laravel/tinker": "^2.9",
         "spatie/laravel-flare": "^1.1"
