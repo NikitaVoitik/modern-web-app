@@ -34,8 +34,10 @@ class ElectionController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'election_date' => ['required', 'date_format:d-m-Y H:i:s'],
+            'election_date' => ['required', 'date_format:Y-m-d'],
         ]);
+
+
 
         $election = Election::create([
             'election_date' => $request->election_date,
