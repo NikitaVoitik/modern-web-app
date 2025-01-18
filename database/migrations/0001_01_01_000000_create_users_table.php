@@ -16,7 +16,7 @@ return new class () extends Migration {
             $table->string('last_name');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
-            $table->date('date_of_birth');
+            $table->dateTime('date_of_birth');
             $table->string('passport_number')->unique();
             $table->string('password')->nullable(false);
             $table->rememberToken();
