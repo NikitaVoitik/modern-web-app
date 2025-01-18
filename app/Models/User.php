@@ -27,7 +27,8 @@ class User extends Authenticatable
         'last_name',
         'date_of_birth',
         'passport_number',
-        'image'
+        'image',
+        'is_admin',
     ];
 
     /**
@@ -39,6 +40,7 @@ class User extends Authenticatable
         'password',
         'remember_token',
     ];
+
 
     public function votes()
     {
