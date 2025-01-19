@@ -1,6 +1,6 @@
 <div>
     <x-input-label for="country" :value="__('Country')" />
-    <select id="country" name="country" class="block mt-1 w-full" required>
+    <select id="country" name="country" class="block mt-1 w-full pt-1 pb-1 rounded-md border" required>
         <option value="">{{ __('Select a country') }}</option>
         @foreach($countries as $country)
             <option value="{{ $country->id }}"
