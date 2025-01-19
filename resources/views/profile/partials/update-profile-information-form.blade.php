@@ -20,13 +20,39 @@
         @method('patch')
 
 
-        <div>
-            <img class="image w-1/3 rounded-xl" src="{{ asset('storage/images/' . Auth::user()->image) }}"
-                 alt="profile_image">
-            <x-file-input name="image" label="Profile Image"/>
+        <div class="flex flex-col items-center space-y-4">
+            <!-- Profile Image Preview -->
+            <div class="relative">
+                <img id="profile-image-preview"
+                     class="w-32 h-32 rounded-full shadow-lg border-2 border-gray-300 object-cover"
+                     src="{{ asset('storage/images/' . Auth::user()->image) }}"
+                     alt="Profile Image">
+                <label for="image-upload"
+                       class="absolute bottom-0 right-0 bg-blue-500 text-white p-2 rounded-full cursor-pointer shadow-lg hover:bg-blue-600 focus:outline-none">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                        <path d="M4 3a1 1 0 000 2h12a1 1 0 100-2H4zM3 8a1 1 0 011-1h12a1 1 0 011 1v7a1 1 0 01-1 1H4a1 1 0 01-1-1V8zm8 4a2 2 0 11-4 0 2 2 0 014 0z" />
+                    </svg>
+                </label>
+                <input id="image-upload" type="file" name="image" class="hidden" accept="image/*">
+            </div>
         </div>
 
-{{--        <div>--}}
+        <script>
+            // JavaScript for image preview
+            document.getElementById('image-upload').addEventListener('change', function (event) {
+                const file = event.target.files[0];
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = function (e) {
+                        document.getElementById('profile-image-preview').src = e.target.result;
+                    };
+                    reader.readAsDataURL(file);
+                }
+            });
+        </script>
+
+
+        {{--        <div>--}}
 {{--            <x-input-label for="name" :value="__('name')"/>--}}
 {{--            <x-text-input id="name" name="name" type="text" class="mt-1 block w-full"--}}
 {{--                          :value="old('first_name', $user->first_name)" required autocomplete="given-name"/>--}}
