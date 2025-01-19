@@ -88,6 +88,9 @@
             <x-input-error class="mt-2" :messages="$errors->get('date_of_birth')"/>
         </div>
 
+
+        <x-country-select :countries="$countries" :user="$user"/>
+
         <div>
             <x-input-label for="email" :value="__('Email')"/>
             <x-text-input id="email" name="email" type="email" class="mt-1 block w-full"

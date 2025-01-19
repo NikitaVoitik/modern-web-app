@@ -29,6 +29,7 @@ class User extends Authenticatable
         'passport_number',
         'image',
         'is_admin',
+        'country'
     ];
 
     /**

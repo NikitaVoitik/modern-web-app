@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use DB;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -21,7 +22,8 @@ class RegisteredUserController extends Controller
      */
     public function create(): View
     {
-        return view('auth.register');
+        $countries = DB::table("countries")->get();
+        return view('auth.register', compact('countries'));
     }
 
     /**
@@ -39,6 +41,7 @@ class RegisteredUserController extends Controller
             'last_name' => ['required', 'string', 'max:255'],
             'date_of_birth' => ['required', 'date', 'before:-18 years'],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
+            'country' => ['required', 'exists:countries,id'],
         ]);
 
         $user = User::create([
@@ -48,6 +51,7 @@ class RegisteredUserController extends Controller
             'date_of_birth' => $request->date_of_birth,
             'passport_number' => $request->passport_number,
             'password' => Hash::make($request->password),
+            'country' => $request->country,
         ]);
 
         event(new Registered($user));
