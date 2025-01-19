@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Country;
 use App\Models\ElectionCandidate;
 use App\Models\Vote;
 use Illuminate\Database\Eloquent\Factories\Factory;

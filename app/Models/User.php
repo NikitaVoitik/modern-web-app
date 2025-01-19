@@ -41,6 +41,12 @@ class User extends Authenticatable
         'remember_token',
     ];
 
+
+    public function country()
+    {
+        return $this->belongsTo(Country::class);
+    }
+
     public function votes()
     {
         return $this->hasMany(Vote::class, 'user_id');
