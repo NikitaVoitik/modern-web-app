@@ -10,6 +10,12 @@ class AppLayout extends Component
     /**
      * Get the view / contents that represents the component.
      */
+    public $include_alpine;
+
+    public function __construct()
+    {
+        $this->include_alpine = false;
+    }
     public function render(): View
     {
         return view('layouts.app');

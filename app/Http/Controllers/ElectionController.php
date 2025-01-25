@@ -51,16 +51,10 @@ class ElectionController extends Controller
      */
     public function show(string $id)
     {
-        $election = Election::with(['candidates.electionCandidate' => function ($query) use ($id) {
-            $query->where('election_id', $id)->withCount('votes');
-        }])->withCount('votes')->findOrFail($id);
-        $votesMap = [];
-        foreach ($election->candidates as $candidate) {
-            $votesMap[$candidate->id] = $candidate->electionCandidate->first()->votes_count;
-        }
+        $election = Election::where('id', $id)->first();
         $votedFor = auth()->user()->getVotedCandidateForElection($election->id);
         $votedFor = $votedFor ? $votedFor->id : null;
-        return view('elections.show', compact('election', 'votesMap', 'votedFor'));
+        return view('elections.show', compact('election',  'votedFor'));
     }
 
     /**
