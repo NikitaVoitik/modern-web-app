@@ -11,7 +11,10 @@
         "doctrine/dbal": "^4.2",
         "laravel/framework": "11.31.0.0",
         "laravel/tinker": "^2.9",
-        "spatie/laravel-flare": "^1.1"
+        "league/flysystem-aws-s3-v3": "^3.0",
+        "spatie/laravel-backup": "^9.2",
+        "spatie/laravel-flare": "^1.1",
+        "ext-zip": "*"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.14",
