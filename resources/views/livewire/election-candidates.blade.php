@@ -1,4 +1,4 @@
-<div wire:poll.5s class="mt-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 p-2 overflow-visible">
+<div wire:poll.5s class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 p-2 overflow-visible">
     @foreach($election->candidates as $candidate)
         <a href="{{ route('candidates.show', $candidate->id) }}"
            class="rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300

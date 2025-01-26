@@ -30,7 +30,11 @@
                     </ul>
                 </div>
             </div>
-
+            <div class="m-3 bg-gradient-to-r from-indigo-600 to-indigo-900 text-white rounded-lg shadow-lg flex justify-center">
+                <h3 class="text-2xl font-bold">
+                    Live Results
+                </h3>
+            </div>
             <!-- Candidates Section -->
             @livewire('election-candidates', ['election' => $election, 'votedFor' => $votedFor])
         </div>
