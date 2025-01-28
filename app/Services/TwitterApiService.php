@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use Http;
+use Illuminate\Support\Facades\Cache;
 
 class TwitterApiService
 {
@@ -17,6 +18,11 @@ class TwitterApiService
 
     public function getTrends()
     {
+        $cachedTrends = Cache::get('twitter_trends');
+
+        if ($cachedTrends) {
+            return $cachedTrends;
+        }
         try {
             $endpoint = '/trends.php';
 
@@ -32,6 +38,7 @@ class TwitterApiService
                 ];
             }
             $trends = $response->json()["trends"];
+            Cache::put('twitter_trends', $trends, 60);
         } catch (\Exception $e) {
             return [[
                 "name" => "Something Happened",
