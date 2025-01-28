@@ -5,8 +5,39 @@ This project is a web application designed to simulate the process of voting and
 User Registration and Authentication
 Users can register, log in, and securely access the voting system.
 
-#### Dynamic Ballots
+### Dynamic Ballots
 Provides dynamically generated ballots with candidates for simulated elections.
 
-#### Real-Time Results
+### Real-Time Results
 Display live election results as votes are cast.
+
+## Installation
+
+### Initial Setup
+
+```bash
+git clone <repository-url>
+cd <repository-directory>
+
+composer install
+npm install
+
+cp .env.example .env
+```
+
+### API Set Up
+
+#### [Source](https://rapidapi.com/alexanderxbx/api/twitter-api45)
+```bash
+TWITTER_API_KEY=798104a7e9msh9aed2ecaad865dbp1c878ajsndd36c315d958
+```
+
+### After
+
+```bash
+php artisan key:generate
+php artisan migrate
+
+npm run dev
+php artisan serve
+```
