@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use Exception;
 use Http;
 use Illuminate\Support\Facades\Cache;
 
@@ -39,7 +40,8 @@ class TwitterApiService
             }
             $trends = $response->json()["trends"];
             Cache::put('twitter_trends', $trends, 60);
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
+            report($e);
             return [[
                 "name" => "Something Happened",
                 "description" => "Please try again later",

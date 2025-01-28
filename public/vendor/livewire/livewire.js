@@ -1848,7 +1848,7 @@ ${expression ? 'Expression: "' + expression + '"\n\n' : ""}`, el);
         while (this.beforeCancels.length) {
           this.beforeCancels.shift()();
         }
-        ;
+
         finish();
       }),
       finish
@@ -5480,7 +5480,7 @@ ${expression ? 'Expression: "' + expression + '"\n\n' : ""}`, el);
       }
       if (isTabEvent(e)) {
         checkTab(e);
-        return;
+
       }
     };
     var checkClick = function checkClick2(e) {
@@ -6256,7 +6256,7 @@ ${expression ? 'Expression: "' + expression + '"\n\n' : ""}`, el);
           } = computeCoordsFromPlacement(rects, statefulPlacement, rtl));
         }
         i = -1;
-        continue;
+
       }
     }
     return {

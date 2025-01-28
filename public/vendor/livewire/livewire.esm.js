@@ -2429,7 +2429,7 @@ ${expression ? 'Expression: "' + expression + '"\n\n' : ""}`, el);
           while (this.beforeCancels.length) {
             this.beforeCancels.shift()();
           }
-          ;
+
           finish();
         }),
         finish
@@ -4576,7 +4576,7 @@ var require_module_cjs3 = __commonJS({
             }
             if (isTabEvent(e)) {
               checkTab(e);
-              return;
+
             }
           };
           var checkClick = function checkClick2(e) {
@@ -5471,7 +5471,7 @@ var require_module_cjs7 = __commonJS({
             } = computeCoordsFromPlacement(rects, statefulPlacement, rtl));
           }
           i = -1;
-          continue;
+
         }
       }
       return {
