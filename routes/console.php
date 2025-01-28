@@ -8,8 +8,6 @@ Artisan::command('inspire', function () {
     $this->comment(Inspiring::quote());
 })->purpose('Display an inspiring quote')->hourly();
 
-// Schedule the backup command
-Artisan::command('schedule:backup', function () {
-    $schedule = app(Schedule::class);
-    $schedule->command('backup:run')->daily()->at('02:00');
-})->purpose('Schedule daily backups');
+Artisan::command('backup:run', function ($user) {
+    // ...
+})->purpose('BackUp')->schedule()->daily();
