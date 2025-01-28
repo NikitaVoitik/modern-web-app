@@ -3,31 +3,22 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\ElectionCandidateResource;
 use App\Models\ElectionCandidate;
 
 class ElectionCandidateController extends Controller
 {
     public function index()
     {
-        $electionCandidates = ElectionCandidate::with(['election', 'candidate'])->get()->map(function ($electionCandidate) {
-            return [
-                'id' => $electionCandidate->id,
-                'election' => $electionCandidate->election->id,
-                'candidate' => $electionCandidate->candidate->name,
-            ];
-        });
+        $electionCandidates = ElectionCandidate::with(['election', 'candidate'])->get();
 
-        return response()->json($electionCandidates);
+        return ElectionCandidateResource::collection($electionCandidates);
     }
 
     public function show(ElectionCandidate $electionCandidate)
     {
         $electionCandidate->load(['election', 'candidate']);
 
-        return response()->json([
-            'id' => $electionCandidate->id,
-            'election' => $electionCandidate->election->id,
-            'candidate' => $electionCandidate->candidate->name,
-        ]);
+        return new ElectionCandidateResource($electionCandidate);
     }
 }
