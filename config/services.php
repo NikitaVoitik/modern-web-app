@@ -35,4 +35,9 @@ return [
         ],
     ],
 
+    'twitter' => [
+        'base_url' => env('TWITTER_BASE_URL'),
+        'api_key' => env('TWITTER_API_KEY'),
+    ],
+
 ];

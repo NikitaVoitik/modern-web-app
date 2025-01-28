@@ -27,6 +27,10 @@
                                        :active="request()->path() === 'voted'">
                         {{ __('Your Votes') }}
                     </x-navigation.link>
+                    <x-navigation.link :href="route('trends.index')"
+                                       :active="request()->path() === 'trends'">
+                        {{ __('Trends') }}
+                    </x-navigation.link>
                 </div>
             </div>
 
