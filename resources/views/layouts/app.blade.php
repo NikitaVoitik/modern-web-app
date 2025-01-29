@@ -14,9 +14,11 @@
 
     <!-- Scripts -->
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-    @if($include_alpine)
-        <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
-    @endif
+    <script>
+        if (window.Alpine === undefined) {
+            document.write('<script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"><\/script>');
+        }
+    </script>
 </head>
 <body class="font-sans antialiased">
 <div class="min-h-screen bg-gray-100 ">
