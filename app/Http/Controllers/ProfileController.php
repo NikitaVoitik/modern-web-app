@@ -32,7 +32,6 @@ class ProfileController extends Controller
     public function update(ProfileUpdateRequest $request): RedirectResponse
     {
         $user = $request->user();
-
         if ($user->isDirty('email')) {
             $user->email_verified_at = null;
         }
