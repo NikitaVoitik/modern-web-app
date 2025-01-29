@@ -86,6 +86,8 @@ class ElectionController extends Controller
         $election = Election::withCount('candidates')->findOrFail($id);
         if ($election->candidates_count > 0) {
             return redirect()->route('elections.show', $election->id)->withErrors(['error' => 'Cannot delete election with candidates']);
+        } else {
+            $election->delete();
         }
 
         return redirect()->route('elections.index');

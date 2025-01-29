@@ -11,7 +11,10 @@
 |
 */
 
-pest()->extend(Tests\TestCase::class)
+uses(Tests\TestCase::class)->in(__DIR__);
+
+
+pest()
     ->use(Illuminate\Foundation\Testing\RefreshDatabase::class)
     ->in('Feature');
 
