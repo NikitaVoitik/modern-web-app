@@ -14,10 +14,11 @@ class ElectionCandidateResource extends JsonResource
      */
     public function toArray($request)
     {
+        ray($this);
         return [
             'id' => $this->id,
-            'election' => $this->election->id,
-            'candidate' => $this->candidate->name,
+            'election' => $this->election_id,
+            'candidate' => $this->candidate_name,
         ];
     }
 }

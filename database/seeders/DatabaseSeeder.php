@@ -18,7 +18,7 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         // Create 10 users
-        User::factory(300)->create();
+        User::factory(100)->create();
 
         Election::factory(6)->create();
 
@@ -26,6 +26,6 @@ class DatabaseSeeder extends Seeder
 
         ElectionCandidate::factory(25)->uniqueCombination()->create();
 
-        Vote::factory(1200)->uniqueCombination()->create();
+        Vote::factory(100)->uniqueCombination()->create();
     }
 }

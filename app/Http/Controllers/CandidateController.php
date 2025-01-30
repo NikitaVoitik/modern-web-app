@@ -73,7 +73,7 @@ class CandidateController extends Controller
 
     public function destroy(int $id)
     {
-        $candidateHasVotes = Vote::where('candidate_id', $id)->exists();
+        $candidateHasVotes = Vote::where('id', $id)->exists();
 
         if ($candidateHasVotes) {
             return redirect()

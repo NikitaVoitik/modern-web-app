@@ -29,7 +29,7 @@ test('show returns single election candidate', function () {
             'data' => [
                 'id' => $electionCandidate->id,
                 'election' => $electionCandidate->election_id,
-                'candidate' => $electionCandidate->candidate->name,
+                'candidate' => $electionCandidate->candidate_name,
             ]
         ]);
 });
